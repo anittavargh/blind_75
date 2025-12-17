@@ -1,21 +1,33 @@
+# Input: digits = "23"
+# Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+
 class Solution(object):
     def letterCombinations(self, digits):
         if not digits:
             return []
+
         phone = {
-            "2": "abc", "3": "def", "4": "ghi", "5": "jkl",
-            "6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz"
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
         }
+        path = ""
         res = []
-        path = []
-        def backtrack(i):
+
+        def dfs(i, path):
             if i == len(digits):
-                res.append("".join(path))
+                res.append(path)
                 return
-            letters = phone[digits[i]]
-            for ch in letters:
-                path.append(ch)
-                backtrack(i+1)
-                path.pop()
-        backtrack(0)
+            
+            for ch in phone[digits[i]]:
+                dfs(i + 1, path + ch)
+
+ 
+        dfs(0, path)
         return res
+        

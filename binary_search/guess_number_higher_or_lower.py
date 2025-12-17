@@ -1,3 +1,5 @@
+# Input: n = 10, pick = 6
+# Output: 6
 
 class Solution(object):
     def guessNumber(self, n):
